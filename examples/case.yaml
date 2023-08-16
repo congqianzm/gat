@@ -1,0 +1,22 @@
+- name: set env
+  action: config
+  env: dev
+  countries: ['my']
+  tag: ["major"]
+
+- name: run sub case
+  action: case
+  variable:
+    token: "000000"
+  request: basic/sub.yaml
+  check:
+    - eq: ["url", "https://postman-echo.com/post"]
+
+
+- name: run sub case with pre config
+  action: case
+  variable:
+    token: "000000"
+  request: basic/countries.yaml
+  check:
+    - eq: ["url", "https://postman-echo.com/post"]
