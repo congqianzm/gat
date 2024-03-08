@@ -1,0 +1,16 @@
+- name: post json
+  action: http
+  variable:
+    - "token": "12345678"
+  request:
+    host: https://postman-echo.com
+    path: /post
+    method: POST
+    json:
+      {
+        "token": "{{token}}"
+      }
+  export:
+    - token: body.json.token
+  check:
+    - eq: [ 'status_code', 200]
