@@ -11,7 +11,7 @@ const (
 type ActionType string
 
 const (
-	HTTP ActionType = "case"
+	HTTP ActionType = "http"
 )
 
 type StatusType int

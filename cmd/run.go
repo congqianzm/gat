@@ -1,15 +1,13 @@
-/*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
-	"fmt"
+	"gat/pkg"
+	"log/slog"
 
 	"github.com/spf13/cobra"
-
-	"gat/pkg"
 )
+
+var path string
 
 // runCmd represents the run command
 var runCmd = &cobra.Command{
@@ -22,12 +20,20 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("run called")
-		pkg.RunCase("")
+		slog.Info("run called")
+		cases, err := pkg.PathToCases(path)
+		if err != nil {
+			pkg.Logger.Error(err.Error())
+			return
+		}
+		suite := pkg.Suite{Cases: cases}
+		suite.Run()
+		pkg.GenerateReportFromJson("template/summary.html", "template/data.json")
 	},
 }
 
 func init() {
+	runCmd.Flags().StringVarP(&path, "path", "p", "", "Path to run the command")
 	rootCmd.AddCommand(runCmd)
 
 	// Here you will define your flags and configuration settings.

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Test Report</title>
+		<!-- 页面样式-->
+		<style type="text/css">
+			/*标题样式*/
+			.title {
+				width: auto;
+				height: 60px;
+				text-align: center;
+				font: bolder 38px/60px "Microsoft YaHei UI";
+			}
+
+			/*汇总信息样式*/
+			.summary {
+				width: 90%;
+				position: absolute;
+				top: 120px;
+				margin-left: 5%;
+			}
+
+			.text-left {
+				font: bolder 20px/30px "Microsoft YaHei UI";
+			}
+
+			.left {
+				width: 50%;
+				float: left;
+			}
+
+			.right {
+				width: 50%;
+				float: right;
+			}
+
+			.list-group-item span {
+				font: normal 16px/38px "Microsoft YaHei UI";
+				padding: 30px;
+			}
+
+			.list-group-item {
+				position: relative;
+				display: block;
+				padding: .4rem 1.25rem;
+				background-color: #fff;
+				border: 1px solid rgba(0, 0, 0, .125);
+			}
+
+			.btn {
+				width: 150px;
+			}
+
+			/* 执行信息样式   */
+			.test_info {
+				width: 90%;
+				position: absolute;
+				top: 450px;
+				margin-left: 5%;
+				color: #28a745 !important;
+			}
+
+			.table td, th {
+				border: solid 2px rgba(9, 122, 51, 0.11) !important;
+				padding: 0;
+				line-height: 40px;
+				text-align: center;
+			}
+
+			.text-success{color:#28a745!important}
+
+			.text-warning{color:#ffc107!important}
+
+			.text-danger{color:#dc3545!important}
+
+			.text-secondary{color:#6c757d!important}
+
+			.text-dark{color:#343a40!important}
+
+			.btn{display:inline-block;font-weight:400;color:#212529;text-align:center;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-color:transparent;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+
+			.btn-success{color:#fff;background-color:#28a745;border-color:#28a745}
+
+			.btn-warning{color:#212529;background-color:#ffc107;border-color:#ffc107}
+
+			.btn-danger{color:#fff;background-color:#dc3545;border-color:#dc3545}
+
+			.btn-secondary{color:#fff;background-color:#6c757d;border-color:#6c757d}
+
+			.bg-danger{background-color:#dc3545!important}
+
+			.text-light{color:#f8f9fa!important}
+
+			.shadow-lg{box-shadow:0 1rem 3rem rgba(0,0,0,.175)!important}
+
+
+			.list-group {
+				display: flex;
+				flex-direction: column;
+			 	padding-left: 0;
+				margin-bottom: 0;
+				border-radius: 0.25rem;
+			}
+
+			.list-group-item+.list-group-item {
+			    border-top-width: 0;
+			}
+
+
+			.table {
+			    width: 100%;
+			    margin-bottom: 1rem;
+			    color: #212529;
+			}
+
+			table {
+			    border-collapse: collapse;
+			}
+
+			.p-3 {
+			    padding: 1rem!important;
+			}
+		</style>
+	</head>
+	<body>
+		<!--报告标题-->
+		<div class="title text-success">
+			<div class="shadow-lg p-3 mb-5 bg-white rounded">{{ .title }}</div>
+		</div>
+
+		<!--汇总信息-->
+		<div class="summary">
+			<p class="text-left text-success">TEST RESULT SUMMARY</p>
+			<div class="left">
+				<ul class="list-group">
+					<li class="list-group-item">
+						<button type="button" class="btn btn-success">TEST Executor</button>
+						<span class="text-dark">{{ .tester }}</span>
+					</li>
+					<li class="list-group-item">
+						<button type="button" class="btn btn-success">START TIME</button>
+						<span class="text-dark">{{ .startTime }}</span>
+					</li>
+					<li class="list-group-item">
+						<button type="button" class="btn btn-success">RUN TIME</button>
+						<span class="text-dark">{{ .elapsedTime }}</span>
+					</li>
+					<li class="list-group-item">
+						<button type="button" class="btn btn-success">TESTS COUNT</button>
+						<span class="text-dark">{{ .all }}</span>
+					</li>
+					<li class="list-group-item">
+						<button type="button" class="btn btn-success">ENV</button>
+						<span class="text-dark">{{ .env }}</span>
+					</li>
+				</ul>
+			</div>
+			<div class="right">
+				<ul class="list-group">
+					<li class="list-group-item">
+						<button type="button" class="btn btn-success">PASS</button>
+						<span class="text-success">{{ .success }}</span>
+					</li>
+					<li class="list-group-item">
+						<button type="button" class="btn btn-warning">FAIL</button>
+						<span class="text-warning">{{ .fail }}</span>
+					</li>
+					<li class="list-group-item">
+						<button type="button" class="btn btn-danger">ERROR</button>
+						<span class="text-danger">{{ .error }}</span>
+					</li>
+					<li class="list-group-item">
+						<button type="button" class="btn btn-secondary">SKIP</button>
+						<span class="text-secondary">{{ .skip }}</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
